@@ -1,0 +1,11 @@
+{
+  "schoolId": "SCHOOL_ID",
+  "moneyhashCredId": "MONEYHASH_CRED_ID",
+  "tenantId": "TENANT_ID",
+  "supplierCode": "SUPPLIER_CODE",
+  "gatewayId": "GATEWAY_ID",
+  "fromDate": "FROM_DATE",
+  "toDate": "TO_DATE",
+  "payType": "PAY_TYPE",
+  "jobType": "JOB_TYPE"
+}

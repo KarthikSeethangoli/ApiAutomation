@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
-import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.given;
 import static org.testng.Assert.*;
 
 @Slf4j
@@ -40,8 +40,72 @@ public class HelperClass {
             assertEquals(response.getStatusCode(), 200, "Expected status 200");
             return response.asString();
         } catch (Exception e) {
-            log.error("API call failed due to exception: ", e);
-            fail("API call failed due to exception: " + e.getMessage());
+            log.error("POST call failed: ", e);
+            fail("POST call failed: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public String GETCALL(String apiPath) {
+        try {
+            Response response = given()
+                    .header("Authorization", "Basic emVuZGFfcWE6RkFAMzM0MV83JnM1Nkw=")
+                    .contentType(ContentType.JSON)
+                    .when()
+                    .get(apiPath)
+                    .then()
+                    .statusCode(200)
+                    .extract()
+                    .response();
+
+            assertEquals(response.getStatusCode(), 200, "Expected status 200");
+            return response.asString();
+        } catch (Exception e) {
+            log.error("GET call failed: ", e);
+            fail("GET call failed: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public String PUTCALL(String apiPath, String apiBody) {
+        try {
+            Response response = given()
+                    .header("Authorization", "Basic emVuZGFfcWE6RkFAMzM0MV83JnM1Nkw=")
+                    .contentType(ContentType.JSON)
+                    .body(apiBody)
+                    .when()
+                    .put(apiPath)
+                    .then()
+                    .statusCode(200)
+                    .extract()
+                    .response();
+
+            assertEquals(response.getStatusCode(), 200, "Expected status 200");
+            return response.asString();
+        } catch (Exception e) {
+            log.error("PUT call failed: ", e);
+            fail("PUT call failed: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public String DELETECALL(String apiPath) {
+        try {
+            Response response = given()
+                    .header("Authorization", "Basic emVuZGFfcWE6RkFAMzM0MV83JnM1Nkw=")
+                    .contentType(ContentType.JSON)
+                    .when()
+                    .delete(apiPath)
+                    .then()
+                    .statusCode(200)
+                    .extract()
+                    .response();
+
+            assertEquals(response.getStatusCode(), 200, "Expected status 200");
+            return response.asString();
+        } catch (Exception e) {
+            log.error("DELETE call failed: ", e);
+            fail("DELETE call failed: " + e.getMessage());
             return null;
         }
     }

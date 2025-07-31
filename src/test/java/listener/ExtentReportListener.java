@@ -39,7 +39,5 @@ public class ExtentReportListener implements ITestListener {
     @Override
     public void onFinish(ITestContext context) {
         extent.flush();
-
-        No;
     }
 }
